@@ -1,0 +1,459 @@
+/* ==================================================
+   FLASHCARDS PAGE
+   ================================================== */
+
+.flashcards-page {
+  padding: 28px 32px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ---------- HEADER ---------- */
+.fc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.fc-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 4px;
+  letter-spacing: -0.5px;
+}
+
+.fc-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.fc-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.fc-refresh-btn:hover:not(:disabled) {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.fc-refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- SECTION TITLE ---------- */
+.fc-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 8px 0 16px;
+}
+
+/* ---------- TOPIC GRID ---------- */
+.fc-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.fc-topic-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 18px 20px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text);
+  transition: all 0.18s ease;
+  min-height: 160px;
+}
+
+.fc-topic-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+  transform: translateY(-2px);
+}
+
+.fc-topic-subject {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fc-topic-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+  margin-bottom: 16px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fc-topic-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: auto;
+}
+
+.fc-topic-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fc-topic-cta svg:first-child {
+  flex-shrink: 0;
+}
+
+.fc-topic-arrow {
+  margin-left: auto;
+  transition: transform 0.18s;
+}
+
+.fc-topic-card:hover .fc-topic-arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- LOADING / EMPTY / ERROR ---------- */
+.fc-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.fc-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px;
+  gap: 10px;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  background: var(--surface-alt);
+}
+
+.fc-empty-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--primary-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.fc-empty h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.fc-empty p {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+  max-width: 400px;
+}
+
+.fc-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.fc-btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.fc-error {
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--danger-light);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  font-size: 13.5px;
+  margin-bottom: 16px;
+}
+
+/* ==================================================
+   CARD VIEWER
+   ================================================== */
+.fc-viewer {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.fc-viewer-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.fc-viewer-topic {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+.fc-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.fc-back-btn:hover:not(:disabled) {
+  background: var(--surface-alt);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.fc-back-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- FLIP CARD ---------- */
+.fc-card {
+  perspective: 1200px;
+  height: 360px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.fc-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.fc-card.flipped .fc-card-inner {
+  transform: rotateY(180deg);
+}
+
+.fc-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--border);
+}
+
+.fc-card-front {
+  background: var(--surface);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.fc-card-back {
+  background: linear-gradient(135deg, var(--purple), var(--primary));
+  color: white;
+  transform: rotateY(180deg);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.fc-card-label {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.fc-card-text {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+.fc-card-hint {
+  position: absolute;
+  bottom: 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.fc-card-concept {
+  position: absolute;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- NAV ---------- */
+.fc-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.fc-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.fc-nav-btn:hover:not(:disabled) {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.fc-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.fc-nav-counter {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+@media (max-width: 900px) {
+  .flashcards-page {
+    padding: 20px 16px 40px;
+  }
+
+  .fc-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fc-title {
+    font-size: 22px;
+  }
+
+  .fc-refresh-btn {
+    align-self: flex-start;
+  }
+
+  .fc-topic-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .fc-topic-card {
+    min-height: 140px;
+    padding: 16px 18px 14px;
+  }
+
+  .fc-topic-name {
+    font-size: 15.5px;
+    margin-bottom: 12px;
+  }
+
+  .fc-card {
+    height: 300px;
+  }
+
+  .fc-card-face {
+    padding: 24px;
+  }
+
+  .fc-card-text {
+    font-size: 17px;
+  }
+}

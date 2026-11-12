@@ -1,0 +1,312 @@
+/* ==================================================
+   MARKDOWN CONTENT BASE
+   ================================================== */
+.md-content {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4 {
+  margin: 18px 0 10px;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.md-content h1 {
+  font-size: 20px;
+}
+
+.md-content h2 {
+  font-size: 17px;
+}
+
+.md-content h3 {
+  font-size: 15px;
+}
+
+.md-content h4 {
+  font-size: 14px;
+}
+
+.md-content p {
+  margin: 0 0 12px;
+}
+
+/* ==================================================
+   LISTS — clean bullets with proper spacing
+   ================================================== */
+.md-content ul,
+.md-content ol {
+  margin: 0 0 14px;
+  padding-left: 26px;
+}
+
+.md-content li {
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+.md-content ul li::marker {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.md-content ol li::marker {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Bold lead-in at start of a bullet (e.g., "**Tip Name:**") */
+.md-content li > strong:first-child {
+  color: var(--primary);
+}
+
+/* Nested lists */
+.md-content li > ul,
+.md-content li > ol {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+/* ==================================================
+   TEXT FORMATTING
+   ================================================== */
+.md-content strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.md-content em {
+  font-style: italic;
+}
+
+/* ==================================================
+   INLINE CODE
+   ================================================== */
+.md-content code {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12.5px;
+  color: var(--primary);
+}
+
+/* ==================================================
+   CODE BLOCKS
+   ================================================== */
+.md-content pre {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 0 0 14px;
+}
+
+.md-content pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--text);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+/* ==================================================
+   BLOCKQUOTES
+   ================================================== */
+.md-content blockquote {
+  border-left: 4px solid var(--primary);
+  padding: 8px 16px;
+  margin: 12px 0;
+  background: var(--surface-alt);
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.md-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================================================
+   TABLES
+   ================================================== */
+.md-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 16px;
+  font-size: 13px;
+}
+
+.md-content th,
+.md-content td {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.md-content th {
+  background: var(--surface-alt);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.md-content tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+[data-theme="dark"] .md-content tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ==================================================
+   HORIZONTAL RULE
+   ================================================== */
+.md-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+/* ==================================================
+   LINKS
+   ================================================== */
+.md-content a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.md-content a:hover {
+  color: var(--primary-hover);
+}
+
+/* ==================================================
+   KATEX MATH
+   ================================================== */
+.md-content .katex {
+  font-size: 1.05em;
+  color: var(--text);
+}
+
+.md-content .katex-display {
+  margin: 16px 0;
+  padding: 12px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.md-content .katex-display > .katex {
+  font-size: 1.15em;
+}
+
+.md-content .katex-display::-webkit-scrollbar {
+  height: 6px;
+}
+
+.md-content .katex-display::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* ==================================================
+   FALLBACK MATH BLOCK
+   For any $...$ that doesn't render, keep readable
+   ================================================== */
+.md-content .math-block {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  margin: 12px 0;
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  font-family: 'Georgia', serif;
+  font-size: 15px;
+  overflow-x: auto;
+}
+
+/* ==================================================
+   IMAGES
+   ================================================== */
+.md-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin: 12px 0;
+}
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+@media (max-width: 900px) {
+  .md-content {
+    font-size: 14px;
+  }
+
+  .md-content h1 {
+    font-size: 18px;
+  }
+
+  .md-content h2 {
+    font-size: 16px;
+  }
+
+  .md-content h3 {
+    font-size: 14.5px;
+  }
+
+  .md-content ul,
+  .md-content ol {
+    padding-left: 22px;
+  }
+
+  .md-content table {
+    font-size: 12.5px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .md-content th,
+  .md-content td {
+    padding: 8px 10px;
+  }
+
+  .md-content .katex-display {
+    padding: 10px;
+    margin: 12px 0;
+  }
+
+  .md-content pre {
+    padding: 12px;
+    font-size: 12px;
+  }
+}
+
+/* ==================================================
+   PRINT-FRIENDLY (for PDF export)
+   ================================================== */
+@media print {
+  .md-content h2,
+  .md-content h3,
+  .md-content h4 {
+    page-break-after: avoid;
+  }
+
+  .md-content pre,
+  .md-content table,
+  .md-content blockquote {
+    page-break-inside: avoid;
+  }
+}

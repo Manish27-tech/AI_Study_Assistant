@@ -1,0 +1,589 @@
+/* ==================================================
+   ONBOARDING WIZARD
+   ================================================== */
+
+.onboarding-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 20px;
+  background: var(--bg);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+/* ---------- Progress steps ---------- */
+.ob-steps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ob-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.ob-step.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.ob-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ob-step.active .ob-step-num {
+  background: var(--primary);
+  color: white;
+}
+
+.ob-step-line {
+  width: 30px;
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+}
+
+/* ---------- Card ---------- */
+.ob-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+.onboarding-page::before {
+  content: "";
+  flex-shrink: 1;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.onboarding-page::after {
+  content: "";
+  flex-shrink: 1;
+  flex-basis: 0;
+  flex-grow: 1.5;
+}
+.ob-card-wide {
+  max-width: 720px;
+}
+
+.ob-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--purple), var(--primary));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.25);
+}
+
+.ob-icon-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.25);
+}
+
+.ob-title {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--text);
+  margin: 0 0 8px;
+  letter-spacing: -0.3px;
+}
+
+.ob-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0 0 28px;
+}
+
+.ob-error {
+  padding: 10px 14px;
+  background: var(--danger-light);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Form ---------- */
+.ob-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.ob-field {
+  display: block;
+}
+
+.ob-field-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.ob-field input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.ob-field input[type="text"]:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+.ob-time-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ob-time-chip {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ob-time-chip:hover {
+  border-color: var(--primary);
+}
+
+.ob-time-chip.selected {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.ob-level-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.ob-level-card {
+  padding: 14px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.ob-level-card:hover {
+  border-color: var(--primary);
+}
+
+.ob-level-card.selected {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.ob-level-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.ob-level-card.selected .ob-level-title {
+  color: var(--primary);
+}
+
+.ob-level-desc {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+/* ---------- Buttons ---------- */
+.ob-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 14.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.ob-btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.ob-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ob-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ob-btn-ghost:hover:not(:disabled) {
+  background: var(--surface-alt);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.ob-btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Loading state ---------- */
+.ob-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 12px;
+  color: var(--text-muted);
+}
+
+.ob-loading h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ob-loading p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.ob-loading-hint {
+  font-size: 12px !important;
+  font-style: italic;
+}
+
+/* ---------- Quiz ---------- */
+.ob-quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.ob-quiz-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+
+.ob-quiz-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.ob-quiz-counter {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 6px 14px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.ob-progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.ob-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--primary));
+  transition: width 0.3s ease;
+  border-radius: 3px;
+}
+
+.ob-question {
+  margin-bottom: 20px;
+}
+
+.ob-question-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.ob-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ob-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text);
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ob-option:hover {
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+.ob-option.selected {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.ob-option-letter {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ob-option.selected .ob-option-letter {
+  background: var(--primary);
+  color: white;
+}
+
+.ob-option-text {
+  flex: 1;
+}
+
+.ob-quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ob-quiz-nav .ob-btn-primary {
+  width: auto;
+  margin-top: 0;
+  min-width: 130px;
+}
+
+/* ---------- Result ---------- */
+.ob-result-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.ob-result-stat {
+  padding: 18px;
+  border-radius: 14px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.ob-result-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.ob-result-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.ob-result-message {
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.ob-result-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+/* ---------- Spinner ---------- */
+.spin {
+  animation: ob-spin 1s linear infinite;
+}
+
+@keyframes ob-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  .onboarding-page {
+    padding: 24px 14px 48px;
+  }
+
+  .ob-steps {
+    gap: 6px;
+  }
+
+  .ob-step {
+    padding: 6px 10px;
+    font-size: 11.5px;
+  }
+
+  .ob-step span:last-child {
+    display: none;
+  }
+
+  .ob-step-line {
+    width: 18px;
+  }
+
+  .ob-card {
+    padding: 24px 20px;
+  }
+
+  .ob-level-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ob-title {
+    font-size: 20px;
+  }
+
+  .ob-quiz-title {
+    font-size: 17px;
+  }
+
+  .ob-question-text {
+    font-size: 15px;
+  }
+
+  .ob-option {
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+
+  .ob-result-stats {
+    grid-template-columns: 1fr;
+  }
+}

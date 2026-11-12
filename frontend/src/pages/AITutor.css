@@ -1,0 +1,854 @@
+/* ==================================================
+   NOVAAI — Premium Chat Interface
+   ================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.nova-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background: #ffffff;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #0f172a;
+}
+
+/* ---------- SIDEBAR ---------- */
+.nova-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: #f8fafc;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, transform 0.3s ease;
+}
+
+@media (min-width: 901px) {
+  .nova-layout.sidebar-collapsed .nova-sidebar {
+    width: 0;
+    padding: 0;
+    border-right: none;
+    overflow: hidden;
+  }
+}
+
+.nova-sidebar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 16px 16px;
+  gap: 6px;
+}
+
+.nova-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.nova-brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.nova-brand-text {
+  font-weight: 800;
+  font-size: 16px;
+  color: #0f172a;
+  letter-spacing: -0.3px;
+}
+
+.nova-sidebar-close { display: none; }
+
+.nova-sidebar-collapse-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.nova-sidebar-collapse-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+@media (max-width: 900px) {
+  .nova-sidebar-collapse-btn { display: none; }
+}
+
+/* New Chat Button */
+.nova-new-chat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 16px 16px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  justify-content: flex-start;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.nova-new-chat:hover {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+.nova-new-chat:active {
+  transform: translateY(1px);
+}
+
+/* Search */
+.nova-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
+  transition: all 0.15s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.nova-search:focus-within {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+.nova-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: #0f172a;
+  font-family: inherit;
+}
+
+.nova-search input::placeholder { color: #94a3b8; }
+
+.nova-conv-refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.nova-conv-refresh:hover:not(:disabled) {
+  background: #f1f5f9;
+  color: #6366f1;
+}
+
+/* Conversation List */
+.nova-conv-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 12px 12px;
+}
+
+/* Thin custom scrollbar for sidebar */
+.nova-conv-list::-webkit-scrollbar { width: 5px; }
+.nova-conv-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.nova-conv-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  font-size: 13.5px;
+  color: #475569;
+  transition: all 0.15s ease;
+  margin-bottom: 2px;
+}
+
+.nova-conv-item:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.nova-conv-item.active {
+  background: #ffffff;
+  color: #4f46e5;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.nova-conv-icon { flex-shrink: 0; color: inherit; opacity: 0.7; }
+.nova-conv-item.active .nova-conv-icon { opacity: 1; color: #4f46e5; }
+.nova-conv-body { flex: 1; min-width: 0; }
+
+.nova-conv-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pin-icon { flex-shrink: 0; color: #6366f1; }
+
+.nova-conv-menu-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nova-conv-item:hover .nova-conv-menu-btn { opacity: 1; }
+.nova-conv-menu-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+/* Dropdown Menu */
+.nova-conv-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
+  padding: 6px;
+  z-index: 100;
+  min-width: 140px;
+  animation: menuIn 0.15s ease;
+}
+
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.nova-conv-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.nova-conv-menu button:hover { background: #f1f5f9; }
+.nova-conv-menu button.danger { color: #ef4444; }
+.nova-conv-menu button.danger:hover { background: #fef2f2; }
+
+.nova-rename-input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #6366f1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+}
+
+.nova-conv-empty { display: flex; justify-content: center; padding: 24px 0; color: #94a3b8; }
+.nova-conv-empty-text { padding: 20px 12px; text-align: center; color: #94a3b8; font-size: 13px; }
+
+/* Sidebar Footer */
+.nova-sidebar-foot {
+  padding: 16px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.nova-dashboard-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.nova-dashboard-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.nova-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nova-user:hover { background: #f1f5f9; }
+
+.nova-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.nova-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.nova-user-meta { min-width: 0; }
+.nova-user-name { font-size: 14px; font-weight: 700; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nova-user-sub { font-size: 12px; color: #64748b; font-weight: 500; }
+
+/* ---------- MAIN AREA ---------- */
+.nova-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #ffffff;
+  position: relative;
+  transition: width 0.3s ease; 
+}
+
+.nova-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.nova-hamburger { display: none; }
+.nova-layout.sidebar-collapsed .nova-hamburger { display: inline-flex; }
+
+.nova-icon-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.nova-icon-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.nova-topbar-actions { margin-left: auto; }
+
+/* ---------- CONTENT AREA ---------- */
+.nova-content {
+  flex: 1;
+  overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sleek custom scrollbar that stays out of the way */
+.nova-content::-webkit-scrollbar {
+  width: 6px;
+}
+.nova-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nova-content::-webkit-scrollbar-thumb {
+  background: transparent; 
+  border-radius: 10px;
+}
+.nova-content:hover::-webkit-scrollbar-thumb {
+  background: #e2e8f0; 
+}
+
+.nova-error {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 24px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.nova-error button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.nova-welcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; 
+  text-align: center;
+  padding: 0 20px 10px 20px; 
+  max-width: 720px; 
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nova-welcome-orb-container {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.nova-welcome-orb {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(255,255,255,0) 70%);
+  filter: blur(15px);
+  border-radius: 50%;
+  z-index: 0;
+  animation: pulseOrb 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseOrb {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.nova-welcome-mark {
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4f46e5, #a855f7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+.nova-welcome-title {
+  margin: 0 0 4px;
+  font-size: 22px; 
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #0f172a, #334155);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nova-welcome-sub {
+  margin: 0 0 20px; 
+  color: #64748b;
+  font-size: 14px; 
+  font-weight: 500;
+}
+
+.nova-suggestions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.nova-sugg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 14px; 
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: #0f172a;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.nova-sugg:hover {
+  border-color: #a855f7;
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.1);
+  transform: translateY(-2px);
+}
+
+.nova-sugg-icon-wrap {
+  width: 28px; 
+  height: 28px; 
+  border-radius: 6px;
+  background: #f8fafc;
+  color: #6366f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.nova-sugg:hover .nova-sugg-icon-wrap {
+  background: #eff6ff;
+  color: #4f46e5;
+}
+
+.nova-sugg-body { min-width: 0; }
+.nova-sugg-label { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.nova-sugg-prompt { font-size: 12px; color: #64748b; line-height: 1.4; }
+
+/* Messages Area */
+.nova-messages {
+  flex: 1;
+  padding: 32px 24px 60px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------- COMPOSER (Input Area) ---------- */
+.nova-composer-wrap {
+  padding: 16px 24px 24px;
+  background: #ffffff;
+  flex-shrink: 0;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box; 
+  z-index: 5; 
+}
+
+.nova-composer {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  padding: 8px 12px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.nova-composer:focus-within {
+  border-color: #a855f7;
+  box-shadow: 0 8px 40px -8px rgba(168, 85, 247, 0.2), 0 0 0 4px rgba(168, 85, 247, 0.1);
+}
+
+.nova-composer textarea {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  padding: 8px 0;
+  min-height: 24px;
+  max-height: 200px;
+}
+
+.nova-composer textarea::placeholder { color: #94a3b8; }
+
+.nova-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.nova-send-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+}
+
+.nova-send-btn:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.nova-stop-btn { background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+.nova-stop-btn:hover { background: #dc2626 !important; transform: scale(1.05); box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4); }
+
+.nova-composer-hint {
+  text-align: center;
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 12px 0 0;
+  font-weight: 500;
+}
+
+.nova-web-hint { color: #6366f1; font-weight: 600; }
+.nova-composer-hint-error { color: #ef4444; }
+
+.nova-backdrop { display: none; }
+
+/* ---------- TOOL BUTTONS (Mic, Globe, File) ---------- */
+.nova-mic-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+
+.nova-mic-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.nova-mic-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nova-mic-btn.active { background: #eff6ff; color: #4f46e5; }
+.nova-mic-btn.active:hover:not(:disabled) { background: #e0e7ff; }
+
+.nova-mic-btn.listening {
+  background: #ef4444;
+  color: white;
+  animation: micPulse 1.4s ease-in-out infinite;
+}
+
+.nova-mic-btn.listening:hover { background: #dc2626; }
+
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+
+.nova-voice-preview {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+  font-style: italic;
+  animation: voiceIn 0.2s ease;
+}
+
+@keyframes voiceIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Attachments */
+.nova-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.nova-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  animation: attachIn 0.2s ease;
+}
+
+.nova-attachment.uploading {
+  background: #eff6ff;
+  color: #4f46e5;
+  border-color: #bfdbfe;
+}
+
+@keyframes attachIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.nova-attachment-name { max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }
+.nova-attachment-meta { font-size: 10.5px; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+
+.nova-attachment-remove {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.nova-attachment-remove:hover { background: #fee2e2; color: #ef4444; }
+
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ==================================================
+   MOBILE RESPONSIVENESS
+   ================================================== */
+@media (max-width: 900px) {
+  .nova-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 70;
+    transform: translateX(-100%);
+    box-shadow: 8px 0 32px rgba(15, 23, 42, 0.15);
+    width: 280px;
+    padding: 0;
+  }
+
+  .nova-sidebar.open { transform: translateX(0); }
+  .nova-sidebar-close { display: inline-flex; }
+  .nova-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 60;
+  }
+  .nova-hamburger { display: inline-flex; }
+  .nova-topbar { padding: 10px 12px; }
+  
+  .nova-welcome {
+    padding-bottom: 20px;
+  }
+  
+  .nova-welcome-title { font-size: 20px; }
+  .nova-suggestions { grid-template-columns: 1fr; max-width: 100%; }
+  .nova-messages { padding: 16px 12px 32px; max-width: 100%; }
+  .nova-composer-wrap { padding: 8px 12px 14px; max-width: 100%; }
+  .nova-composer { padding: 6px 8px; border-radius: 20px; }
+}

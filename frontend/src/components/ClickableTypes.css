@@ -1,0 +1,129 @@
+.ct-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ct-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.ct-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ---------- Heading with inline clickable link ---------- */
+.ct-heading {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.ct-label {
+  color: var(--text);
+  margin-right: 2px;
+}
+
+/* ---------- The clickable type name (GFG-style green link) ---------- */
+.ct-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--success);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+  text-align: left;
+}
+
+.ct-link:hover:not(:disabled) {
+  color: var(--success);
+  text-decoration-thickness: 2.5px;
+  filter: brightness(0.9);
+}
+
+.ct-link:focus-visible {
+  outline: 2px solid var(--success);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.ct-link:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.ct-link.ct-opening {
+  color: var(--primary);
+  text-decoration-color: var(--primary);
+}
+
+/* ---------- Description ---------- */
+.ct-desc {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* ---------- Error ---------- */
+.ct-error {
+  background: var(--danger-light);
+  color: var(--danger);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  border: 1px solid var(--danger);
+}
+
+.ct-empty {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ---------- Spin ---------- */
+.ct-spin {
+  animation: ctSpin 1s linear infinite;
+}
+
+@keyframes ctSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Dark mode tweak ---------- */
+[data-theme="dark"] .ct-link {
+  color: #4ade80;
+}
+
+[data-theme="dark"] .ct-link:hover:not(:disabled) {
+  color: #22c55e;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+  .ct-heading {
+    font-size: 15px;
+  }
+  .ct-desc {
+    font-size: 14px;
+  }
+}

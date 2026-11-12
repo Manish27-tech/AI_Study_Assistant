@@ -1,0 +1,164 @@
+.model-selector {
+  position: relative;
+  z-index: 50;
+}
+
+.ms-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--surface-alt, #f1f5f9);
+  border: 1px solid var(--border, #e2e8f0);
+  color: var(--text, #0f172a);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ms-trigger:hover, .ms-trigger.open {
+  background: var(--surface, #fff);
+  border-color: var(--primary, #2563eb);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.ms-trigger-text {
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-chevron {
+  color: var(--text-muted, #64748b);
+  transition: transform 0.2s;
+}
+
+.ms-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* --- Dropdown Menu --- */
+.ms-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 320px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  padding: 8px;
+  animation: msSlideIn 0.2s ease;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+@keyframes msSlideIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ms-dropdown-header {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #64748b);
+  padding: 8px 12px;
+}
+
+.ms-group {
+  margin-bottom: 8px;
+}
+
+.ms-group-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-muted, #64748b);
+  padding: 6px 12px;
+  margin-top: 4px;
+}
+
+.ms-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.ms-option:hover {
+  background: var(--surface-alt, #f8fafc);
+}
+
+.ms-option.selected {
+  background: var(--primary-light, #eff6ff);
+}
+
+.ms-option.locked {
+  opacity: 0.7;
+}
+
+.ms-option-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e2e8f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-fast { color: #f59e0b; }
+.icon-smart { color: #8b5cf6; }
+.icon-google { color: #3b82f6; }
+
+.ms-option-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ms-option-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text, #0f172a);
+  margin-bottom: 2px;
+}
+
+.ms-option.selected .ms-option-title {
+  color: var(--primary, #2563eb);
+}
+
+.ms-option-desc {
+  font-size: 11.5px;
+  color: var(--text-muted, #64748b);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-lock {
+  color: #f59e0b;
+  margin-left: 4px;
+}
+
+.ms-check {
+  color: var(--primary, #2563eb);
+  flex-shrink: 0;
+}

@@ -1,0 +1,149 @@
+.rt-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+/* ---------- Card ---------- */
+.rt-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  color: var(--text);
+  width: 100%;
+}
+
+.rt-card:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateX(2px);
+}
+
+.rt-card:hover:not(:disabled) .rt-card-name {
+  color: var(--primary);
+}
+
+.rt-card:hover:not(:disabled) .rt-card-arrow {
+  color: var(--primary);
+  transform: translateX(2px);
+}
+
+.rt-card:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.rt-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.rt-card.rt-opening {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* ---------- Icon ---------- */
+.rt-card-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--purple), var(--primary));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+
+.rt-card:hover:not(:disabled) .rt-card-icon {
+  transform: scale(1.05);
+}
+
+/* ---------- Body ---------- */
+.rt-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.rt-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  transition: color 0.15s;
+}
+
+.rt-card-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Arrow ---------- */
+.rt-card-arrow {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+/* ---------- Error ---------- */
+.rt-error {
+  background: var(--danger-light);
+  color: var(--danger);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  border: 1px solid var(--danger);
+}
+
+.rt-empty {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ---------- Spin animation ---------- */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+  .rt-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rt-card:hover:not(:disabled) {
+    transform: none;
+  }
+}
